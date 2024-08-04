@@ -57,4 +57,14 @@ const getOrderById = async (req, res) => {
   }
 };
 
-module.exports = { createOrder, updateOrderStatus, getOrderById };
+// Get all orders
+const getAllOrders = async (req, res) => {
+  try {
+    const orders = await Order.find().populate("user restaurant");
+    res.json(orders);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+module.exports = { createOrder, updateOrderStatus, getOrderById, getAllOrders };
