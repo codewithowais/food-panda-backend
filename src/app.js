@@ -5,6 +5,7 @@ const userRoutes = require("./routes/userRoutes");
 const uploadRoutes = require("./routes/uploadRoutes");
 const restaurantRoutes = require("./routes/restaurantRoutes");
 const foodRoutes = require("./routes/foodRoutes");
+const path = require("path");
 
 dotenv.config();
 
@@ -18,7 +19,9 @@ app.use("/api/users", userRoutes);
 app.use("/api/upload", uploadRoutes);
 app.use("/api/restaurants", restaurantRoutes);
 app.use("/api/foods", foodRoutes);
-app.use("/uploads", express.static("uploads"));
+
+// Serve static files
+app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
 
 const PORT = process.env.PORT || 5000;
 
